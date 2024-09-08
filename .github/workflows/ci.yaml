@@ -16,7 +16,8 @@ jobs:
       - name: Auto-generate vimdoc
         uses: kdheepak/panvimdoc@main
         with:
-          vimdoc: telescope-scriptnames.nvim
+          vimdoc: ${{ github.event.repository.name }}.txt
+          demojify: true
       - name: Update vimdoc
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
