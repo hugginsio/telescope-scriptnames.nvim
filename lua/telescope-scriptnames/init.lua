@@ -4,7 +4,7 @@ local pickers = require("telescope.pickers")
 
 local TelescopeScriptnames = {}
 
-TelescopeScriptnames.VERSION = "0.0.1" -- x-release-please-version
+TelescopeScriptnames.VERSION = "1.0.0" -- x-release-please-version
 
 local function results_builder()
 	local names = {}
