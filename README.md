@@ -13,3 +13,17 @@ Install using your favorite plugin manager. Whatever you choose, make sure you r
 ```lua
 require("telescope").load_extension "scriptnames"
 ```
+
+## Usage
+
+Once loaded by Telescope, you can launch the picker with this command:
+
+```
+:Telescope scriptnames
+```
+
+Or, from Luascript:
+
+```lua
+require("telescope").extensions.scriptnames.scriptnames()
+```
