@@ -3,33 +3,12 @@
 name: CI
 on:
   push:
-  pull_request:
+    branches:
+      - "main"
 
 jobs:
-  docs:
-    runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v3
-      - name: Auto-generate vimdoc
-        uses: kdheepak/panvimdoc@main
-        with:
-          vimdoc: ${{ github.event.repository.name }}.txt
-          demojify: true
-      - name: Update vimdoc
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "chore(build): auto-generate vimdoc"
-          commit_user_name: "github-actions[bot]"
-          commit_user_email: "github-actions[bot]@users.noreply.github.com"
-          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
-    needs:
-      - docs
     permissions:
       contents: write
       pull-requests: write

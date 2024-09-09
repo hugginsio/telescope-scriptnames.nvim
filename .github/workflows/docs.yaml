@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: "Generate docs"
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "README.md"
+
+jobs:
+  docs:
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: "write"
+    steps:
+      - uses: "actions/checkout@v3"
+      - name: "Generate vimdoc"
+        uses: "kdheepak/panvimdoc@main"
+        with:
+          vimdoc: "${{ github.event.repository.name }}"
+          demojify: true
+      - name: "Commit vimdoc"
+        uses: "stefanzweifel/git-auto-commit-action@v4"
+        with:
+          commit_message: "chore(build): auto-generate vimdoc"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
